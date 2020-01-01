@@ -110,27 +110,6 @@ class GCM {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, gcmParameterSpec);
         return cipher.doFinal(data);
     }
-    static void test1() throws Exception {
-        Path dir = Paths.get("C:\\code\\tmp\\");
-        var arr = new byte[]{10, 20, 30, 40};
-        char[] pass = "password".toCharArray();
-        byte[] enc = GCM.encrypt(arr, pass);
-        System.out.println(Arrays.toString(GCM.decrypt(enc, pass)));
-
-        KeyPair kp = KeyPairs.generate();
-        KeyPairs.save(dir, kp, pass);
-    }
-    static void test2() throws Exception {
-        Path dir = Paths.get("C:\\code\\tmp\\");
-        char[] pass = "password".toCharArray();
-        KeyPair kp = KeyPairs.load(dir, pass);
-        var arr = new byte[]{10, 20, 30, 40};
-        byte[] enc = GCM.encrypt(arr, kp.getPublic().getEncoded());
-    }
-
-    public static void main(String[] args) throws Exception {
-        test1();
-    }
 }
 
 class KeyPairs {
